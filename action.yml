@@ -50,7 +50,7 @@ inputs:
     required: false
   full-sync:
     description: '[Optional] do the full sync, meaning delete those which are not in the source folder'
-    default: '0'
+    default: ''
     required: false
   post-process-cmd :
     description: '[Optional] run a post pocess cmd on the destination folder right before pushing it'
