@@ -16,6 +16,7 @@ TARGET_BRANCH="${9}"
 COMMIT_MESSAGE="${10}"
 TARGET_DIRECTORY="${11}"
 FULL_SYNC="${12}"
+POST_PROCESSING_COMMAND="${13}"
 
 if [ -z "$DESTINATION_REPOSITORY_USERNAME" ]
 then
@@ -128,6 +129,14 @@ fi
 
 echo "[+] Copying contents of source repository folder $SOURCE_DIRECTORY to folder $TARGET_DIRECTORY in git repo $DESTINATION_REPOSITORY_NAME"
 cp -ra "$SOURCE_DIRECTORY"/. "$CLONE_DIR/$TARGET_DIRECTORY"
+
+if [-n "$POST_PROCESSING_COMMAND"]
+then
+	cd "$CLONE_DIR/$TARGET_DIRECTORY"
+	echo "[+] Executing post processing command"
+	`$POST_PROCESSING_COMMAND`
+fi
+
 cd "$CLONE_DIR"
 
 echo "[+] Files that will be pushed"

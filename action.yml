@@ -52,6 +52,10 @@ inputs:
     description: '[Optional] do the full sync, meaning delete those which are not in the source folder'
     default: '0'
     required: false
+  post-process-cmd :
+    description: '[Optional] run a post pocess cmd on the destination folder right before pushing it'
+    default: ''
+    required: false
 
 runs:
   using: docker
@@ -69,6 +73,7 @@ runs:
     - '${{ inputs.commit-message }}'
     - '${{ inputs.target-directory }}'
     - '${{ inputs.full-sync }}'
+    - '${{ inputs.post-process-cmd }}'
 branding:
   icon: git-commit
   color: green
