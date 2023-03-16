@@ -15,6 +15,7 @@ DESTINATION_REPOSITORY_USERNAME="${8}"
 TARGET_BRANCH="${9}"
 COMMIT_MESSAGE="${10}"
 TARGET_DIRECTORY="${11}"
+FULL_SYNC="${12}"
 
 if [ -z "$DESTINATION_REPOSITORY_USERNAME" ]
 then
@@ -89,11 +90,15 @@ mv "$CLONE_DIR/.git" "$TEMP_DIR/.git"
 # $TARGET_DIRECTORY is '' by default
 ABSOLUTE_TARGET_DIRECTORY="$CLONE_DIR/$TARGET_DIRECTORY/"
 
-echo "[+] Deleting $ABSOLUTE_TARGET_DIRECTORY"
-rm -rf "$ABSOLUTE_TARGET_DIRECTORY"
 
-echo "[+] Creating (now empty) $ABSOLUTE_TARGET_DIRECTORY"
-mkdir -p "$ABSOLUTE_TARGET_DIRECTORY"
+if [ -n "$FULL_SYNC" ]
+then
+	echo "[+] Deleting $ABSOLUTE_TARGET_DIRECTORY"
+	rm -rf "$ABSOLUTE_TARGET_DIRECTORY"
+
+	echo "[+] Creating (now empty) $ABSOLUTE_TARGET_DIRECTORY"
+	mkdir -p "$ABSOLUTE_TARGET_DIRECTORY"
+fi
 
 echo "[+] Listing Current Directory Location"
 ls -al
