@@ -48,7 +48,11 @@ inputs:
     description: '[Optional] The directory to wipe and replace in the target repository'
     default: ''
     required: false
-        
+  full-sync:
+    description: '[Optional] do the full sync, meaning delete those which are not in the source folder'
+    default: '0'
+    required: false
+
 runs:
   using: docker
   image: Dockerfile
@@ -64,6 +68,7 @@ runs:
     - '${{ inputs.target-branch }}'
     - '${{ inputs.commit-message }}'
     - '${{ inputs.target-directory }}'
+    - '${{ inputs.full-sync }}'
 branding:
   icon: git-commit
   color: green
