@@ -130,7 +130,7 @@ fi
 echo "[+] Copying contents of source repository folder $SOURCE_DIRECTORY to folder $TARGET_DIRECTORY in git repo $DESTINATION_REPOSITORY_NAME"
 cp -ra "$SOURCE_DIRECTORY"/. "$CLONE_DIR/$TARGET_DIRECTORY"
 
-if [-n "$POST_PROCESSING_COMMAND"]
+if [ -n "$POST_PROCESSING_COMMAND"]
 then
 	cd "$CLONE_DIR/$TARGET_DIRECTORY"
 	echo "[+] Executing post processing command"
